@@ -53,7 +53,7 @@ class MyClient(discord.Client):
         await member.add_roles(role)
         await member.send(config.RULE)
         wellcomechannel = client.get_channel(726880749080543234)
-        await wellcomechannel.send(f'Добро пожаловать, {member.mention}, в гильдию WULF')
+        await wellcomechannel.send(f'Привет, {member.mention}!\nДобро пожаловать в гильдию WULF!')
 
     
  
