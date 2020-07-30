@@ -3,10 +3,11 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord import utils
 import config
-
+import os
 
 
 class MyClient(discord.Client):
+
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user)) 
     async def on_raw_reaction_add(self, payload):
@@ -57,4 +58,4 @@ class MyClient(discord.Client):
     
  
 client = MyClient()
-client.run(config.TOKEN)
+token = os.environ.get('BOT_TOKEN')
