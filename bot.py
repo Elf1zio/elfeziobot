@@ -62,4 +62,5 @@ async def on_member_join(member):
 async def officer(ctx):
     await ctx.send('GARPII(Антон) --------- Глава гильдии\nShotMaster(Денчик) -- Зам. главы\nПальмерстон(Денис) - Зам. главы\nXxQwelcerxX(Ваня) --- Зам. главы, главный по морскому контенту\nAmelino(Динар) ------- Зам. главы\nMoonsCrow(Алина) --- Зам. главы, главная по ремесленому контенту')
     
-bot.run('NzMyNjkzNjg5NzIxMTU5Njky.Xw4ULA.FdCPQezkaEa8woKCphs8KrJkxd8')
+token = os.environ.get('BOT_TOKEN')
+bot.run(token)
