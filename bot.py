@@ -55,12 +55,8 @@ async def on_member_join(member):
     role = discord.utils.get(member.guild.roles, name = "Новичок")
     await member.add_roles(role)
     await member.send(config.RULE)
-    wellcomechannel = bot.get_channel(726880749080543234)
-    await wellcomechannel.send(f'Добро пожаловать, {member.mention}, в гильдию WULF')
-    
-@bot.command()
-async def officer(ctx):
-    await ctx.send('GARPII(Антон) --------- Глава гильдии\nShotMaster(Денчик) -- Зам. главы\nПальмерстон(Денис) - Зам. главы\nXxQwelcerxX(Ваня) --- Зам. главы, главный по морскому контенту\nAmelino(Динар) ------- Зам. главы\nMoonsCrow(Алина) --- Зам. главы, главная по ремесленому контенту')
+    wellcomechannel = bot.get_channel(745809678285537281)
+    await wellcomechannel.send(f'Добро пожаловать, {member.mention}, в гильдию OneHive')
     
 token = os.environ.get('BOT_TOKEN')
 bot.run(token)
