@@ -11,6 +11,7 @@ bot = commands.Bot(command_prefix='!')
 async def on_ready():
     print('Бот запущен')
 
+
 @bot.event
 async def on_raw_reaction_add(payload):
     if payload.message_id == config.POST_ID:
