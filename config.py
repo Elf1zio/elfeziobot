@@ -22,6 +22,6 @@ ROLES = {
     }
 
 EXCROLES = ()
-MAX_ROLES_PER_USER = 6
+MAX_ROLES_PER_USER = 5
 
 
