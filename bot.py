@@ -17,12 +17,13 @@ async def on_raw_reaction_add(payload):
     if payload.message_id == config.POST_ID:
         channel = bot.get_channel(payload.channel_id) # получаем объект канала
         message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-        member = utils.get(message.guild.members, id=payload.user_id) # получаем объект пользователя который поставил реакцию
+        member = utils.get(message.channel.members, id=payload.user_id) # получаем объект пользователя который поставил реакцию
  
         try:
             emoji = payload.emoji.name # эмоджик который выбрал юзер
 
-            role = utils.get(message.guild.roles, id=config.ROLES[emoji]) # объект выбранной роли (если есть)
+            roles = message.channel.roles
+            role = utils.get(roles, id=config.ROLES[emoji]) # объект выбранной роли (если есть)
 
             if(len([i for i in member.roles if i.id not in config.EXCROLES]) <= config.MAX_ROLES_PER_USER):
                 await member.add_roles(role)
