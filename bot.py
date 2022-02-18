@@ -33,9 +33,10 @@ async def on_raw_reaction_add(payload):
             print(repr(e))
 @bot.event
 async def on_raw_reaction_remove(payload):
+    print(str(payload))
     channel = bot.get_channel(payload.channel_id) # получаем объект канала
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-    member = payload.member
+    member = utils.get(channel.members, id=payload.user_id)
 
     try:
         emoji = payload.emoji.name
