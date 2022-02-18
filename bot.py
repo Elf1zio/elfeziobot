@@ -17,8 +17,7 @@ async def on_raw_reaction_add(payload):
     if payload.message_id == config.POST_ID:
         channel = bot.get_channel(payload.channel_id) # получаем объект канала
         message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-        print(message.guild.name)
-        member = utils.get(message.channel.members, id=payload.user_id) # получаем объект пользователя который поставил реакцию
+        member = payload.member
  
         try:
             emoji = payload.emoji.name # эмоджик который выбрал юзер
