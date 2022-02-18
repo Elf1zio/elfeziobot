@@ -10,6 +10,9 @@ bot = commands.Bot(command_prefix='!')
 
 @bot.event
 async def on_ready():
+    channel = await client.fetch_channel(745758145640661095)
+    for member in channel.members:
+        print(member)
     print('Бот запущен')
 
 
