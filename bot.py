@@ -20,10 +20,9 @@ async def on_raw_reaction_add(payload):
         member = payload.member
  
         try:
-            emoji = payload.emoji.name # эмоджик который выбрал юзер
-
+            emoji = payload.emoji.name
             roleId = config.ROLES[emoji]
-            role = message.guild.get_role(roleId) # объект выбранной роли (если есть)
+            role = message.guild.get_role(roleId)
 
             await member.add_roles(role)
             print('[SUCCESS] User {0.display_name} has been granted with role {1.name}'.format(member, role))
@@ -36,11 +35,12 @@ async def on_raw_reaction_add(payload):
 async def on_raw_reaction_remove(payload):
     channel = bot.get_channel(payload.channel_id) # получаем объект канала
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-    member = utils.get(message.guild.members, id=payload.user_id) # получаем объект пользователя который поставил реакцию
+    member = payload.member
 
     try:
-        emoji = str(payload.emoji) # эмоджик который выбрал юзер
-        role = utils.get(message.guild.roles, id=config.ROLES[emoji]) # объект выбранной роли (если есть)
+        emoji = payload.emoji.name
+        roleId = config.ROLES[emoji]
+        role = message.guild.get_role(roleId)
  
         await member.remove_roles(role)
         print('[SUCCESS] Role {1.name} has been remove for user {0.display_name}'.format(member, role))
