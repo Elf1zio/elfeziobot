@@ -41,7 +41,7 @@ async def on_raw_reaction_remove(payload):
     guild = bot.get_guild(payload.guild_id)
     for guildMember in bot.get_all_members():
         print(str(guildMember))
-        if guildMember.id == message.user_id:
+        if guildMember.id == payload.user_id:
             print(guildMember)
             member = guildMember
 
