@@ -20,7 +20,7 @@ async def on_raw_reaction_add(payload):
         member = utils.get(message.guild.members, id=payload.user_id) # получаем объект пользователя который поставил реакцию
  
         try:
-            emoji = payload.emoji.name # эмоджик который выбрал юзер
+            emoji = str(payload.emoji) # эмоджик который выбрал юзер
 
             print(emoji.id)
             role = utils.get(message.guild.roles, id==config.ROLES[emoji]) # объект выбранной роли (если есть)
