@@ -22,10 +22,10 @@ async def on_raw_reaction_add(payload):
         try:
             emoji = payload.emoji.name # эмоджик который выбрал юзер
 
-            roles = message.channel.roles
-            role = utils.get(roles, id=config.ROLES[emoji]) # объект выбранной роли (если есть)
+            roleId = config.ROLES[emoji]
+            role = message.guild.get_role(roleId) # объект выбранной роли (если есть)
 
-            if(len([i for i in member.roles if i.id not in config.EXCROLES]) <= config.MAX_ROLES_PER_USER):
+            if(len([i for i in member.roles]) <= config.MAX_ROLES_PER_USER):
                 await member.add_roles(role)
                 print('[SUCCESS] User {0.display_name} has been granted with role {1.name}'.format(member, role))
             else:
