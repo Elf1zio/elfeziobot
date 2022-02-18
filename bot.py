@@ -38,6 +38,8 @@ async def on_raw_reaction_remove(payload):
     channel = bot.get_channel(payload.channel_id) # получаем объект канала
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
     guild = bot.get_guild(payload.guild_id)
+    for guildMember in guild.members:
+        print(str(guildMember))
     member = guild.get_member(payload.user_id)
 
     print(str(member))
