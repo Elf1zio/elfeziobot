@@ -1,3 +1,4 @@
+from http import client
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
@@ -36,7 +37,9 @@ async def on_raw_reaction_remove(payload):
     print(str(payload))
     channel = bot.get_channel(payload.channel_id) # получаем объект канала
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-    member = utils.get(channel.members, id=payload.user_id)
+    member = channel.guild.get_member(payload.user_id)
+
+    print(str(member))
 
     try:
         emoji = payload.emoji.name
