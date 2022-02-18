@@ -25,12 +25,8 @@ async def on_raw_reaction_add(payload):
             roleId = config.ROLES[emoji]
             role = message.guild.get_role(roleId) # объект выбранной роли (если есть)
 
-            if(len([i for i in member.roles]) <= config.MAX_ROLES_PER_USER):
-                await member.add_roles(role)
-                print('[SUCCESS] User {0.display_name} has been granted with role {1.name}'.format(member, role))
-            else:
-                await message.remove_reaction(payload.emoji, member)
-                print('[ERROR] Too many roles for user {0.display_name}'.format(member))
+            await member.add_roles(role)
+            print('[SUCCESS] User {0.display_name} has been granted with role {1.name}'.format(member, role))
            
         except KeyError as e:
             print('[ERROR] KeyError, no role found for ' + emoji)
