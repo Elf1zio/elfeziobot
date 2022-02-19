@@ -36,14 +36,15 @@ async def on_raw_reaction_add(payload):
 async def on_raw_reaction_remove(payload):
     channel = await bot.fetch_channel(745758145640661095)
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-    member = utils.get(channel.members, id=payload.user_id)
 
     try:
         emoji = payload.emoji.name
         roleId = config.ROLES[emoji]
         role = message.guild.get_role(roleId)
  
-        await member.remove_roles(role)
+        for member in channel.members:
+            if member.id == payload.user_id:
+                await member.remove_roles(role)
         print('[SUCCESS] Role {1.name} has been remove for user {0.display_name}'.format(member, role))
  
     except KeyError as e:
