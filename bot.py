@@ -43,7 +43,7 @@ async def on_raw_reaction_remove(payload):
         roleId = config.ROLES[emoji]
         role = message.guild.get_role(roleId)
  
-        for guild in client.guilds:
+        for guild in discord.client.guilds:
             for member in guild.members:
                 if member.id == payload.user_id:
                     await member.remove_roles(role)
