@@ -36,7 +36,7 @@ async def on_raw_reaction_add(payload):
 async def on_raw_reaction_remove(payload):
     channel = await bot.fetch_channel(745758145640661095)
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-    member = utils.get(channel.members, user_id=payload.user_id)
+    member = utils.get(channel.members, id=payload.user_id)
 
     try:
         emoji = payload.emoji.name
