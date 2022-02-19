@@ -10,9 +10,6 @@ bot = commands.Bot(command_prefix='!')
 
 @bot.event
 async def on_ready():
-    channel = await bot.fetch_channel(745758145640661095)
-    for member in channel.members:
-        print(member)
     print('Бот запущен')
 
 
@@ -38,16 +35,12 @@ async def on_raw_reaction_add(payload):
 @bot.event
 async def on_raw_reaction_remove(payload):
     print(str(payload))
-    channel = bot.get_channel(payload.channel_id)
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-    guild = bot.get_guild(payload.guild_id)
-    for guildMember in bot.get_all_members():
-        print(str(guildMember))
-        if guildMember.id == payload.user_id:
-            print(guildMember)
-            member = guildMember
-
-    print(str(member))
+    channel = await bot.fetch_channel(745758145640661095)
+    for channelMember in channel:
+        print(str(channelMember))
+        if channelMember.id == payload.user_id:
+            member = channelMember
 
     try:
         emoji = payload.emoji.name
