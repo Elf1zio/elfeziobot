@@ -36,7 +36,7 @@ async def on_raw_reaction_add(payload):
 async def on_raw_reaction_remove(payload):
     channel = await bot.fetch_channel(745758145640661095)
     message = await channel.fetch_message(payload.message_id) # получаем объект сообщения
-    for channelMember in channel:
+    for channelMember in channel.members:
         if channelMember.id == payload.user_id:
             member = channelMember
 
